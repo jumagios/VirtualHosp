@@ -1,4 +1,0 @@
-C:\Users\juang\source\repos\VirtualHosp\obj\Debug\netcoreapp3.1\VirtualHosp.csprojAssemblyReference.cache
-C:\Users\juang\source\repos\VirtualHosp\obj\Debug\netcoreapp3.1\VirtualHosp.AssemblyInfoInputs.cache
-C:\Users\juang\source\repos\VirtualHosp\obj\Debug\netcoreapp3.1\VirtualHosp.AssemblyInfo.cs
-C:\Users\juang\source\repos\VirtualHosp\obj\Debug\netcoreapp3.1\VirtualHosp.csproj.CoreCompileInputs.cache
