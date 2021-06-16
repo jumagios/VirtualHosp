@@ -33,7 +33,7 @@ namespace VirtualHosp.Migrations
                     b.Property<string>("Ciudad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CodigoPostal")
+                    b.Property<int?>("CodigoPostal")
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
@@ -43,7 +43,7 @@ namespace VirtualHosp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EstadoCivil")
+                    b.Property<int?>("EstadoCivil")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FechaNacimiento")
@@ -57,9 +57,6 @@ namespace VirtualHosp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumeroDocumento")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumeroDocumento2")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")

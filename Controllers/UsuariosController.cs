@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using VirtualHosp.Clases;
 using VirtualHosp.Context;
 using VirtualHosp.Enums;
@@ -14,6 +13,8 @@ namespace VirtualHosp.Controllers
     public class UsuariosController : Controller
     {
         private readonly HospitalDbContext _context;
+        private static readonly SelectList tipoDocumento = new SelectList(Enum.GetValues(typeof(TipoDocumento)), TipoDocumento.DNI);
+        private static readonly SelectList estadoCivil = new SelectList(Enum.GetValues(typeof(EstadoCivil)), EstadoCivil.SOLTERO);
 
         public UsuariosController(HospitalDbContext context)
         {
@@ -47,7 +48,9 @@ namespace VirtualHosp.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
-            ViewBag.TipoDocumento = new SelectList(Enum.GetValues(typeof(TipoDocumento)), TipoDocumento.DNI);
+            ViewBag.TipoDocumento = tipoDocumento;
+            ViewBag.EstadoCivil = estadoCivil;
+
             return View();
         }
 
@@ -70,6 +73,9 @@ namespace VirtualHosp.Controllers
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.TipoDocumento = tipoDocumento;
+            ViewBag.EstadoCivil = estadoCivil;
+
             if (id == null)
             {
                 return NotFound();
