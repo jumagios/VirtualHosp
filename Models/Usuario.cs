@@ -1,15 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using VirtualHosp.Enums;
 
-namespace VirtualHosp.Clases
+namespace VirtualHosp.Models
 {
     public class Usuario
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         [Required(ErrorMessage = "Nombre es requerido")]
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Apellido es requerido")]
@@ -28,7 +24,6 @@ namespace VirtualHosp.Clases
         [Display(Name = "Estado civil")]
         public EstadoCivil? EstadoCivil { get; set; }
         [Required(ErrorMessage = "Email es requerido")]
-        [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string Email { get; set; }
         public string Direccion { get; set; }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\VirtualHosp.csproj": {}
+    "C:\\Users\\Gonza\\Source\\Repos\\VirtualHosp2\\VirtualHosp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\VirtualHosp.csproj": {
+    "C:\\Users\\Gonza\\Source\\Repos\\VirtualHosp2\\VirtualHosp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\VirtualHosp.csproj",
+        "projectUniqueName": "C:\\Users\\Gonza\\Source\\Repos\\VirtualHosp2\\VirtualHosp.csproj",
         "projectName": "VirtualHosp",
-        "projectPath": "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\VirtualHosp.csproj",
+        "projectPath": "C:\\Users\\Gonza\\Source\\Repos\\VirtualHosp2\\VirtualHosp.csproj",
         "packagesPath": "C:\\Users\\Gonza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\obj\\",
+        "outputPath": "C:\\Users\\Gonza\\Source\\Repos\\VirtualHosp2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gonza\\AppData\\Roaming\\NuGet\\NuGet.Config",

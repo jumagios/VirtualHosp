@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jCCfvk7IGcjOSTEkZJyYly2cPNIuiiyncTB3uJspx+ZQ4+prJ9f1epMFrcnfuThQLvB9YNfuBoQciwMIvy2GBg==",
+  "dgSpecHash": "vGx+MxGm0pUJF/mTPp+xM/TZkyvxoe0+APUpVTzKKVekF1dfJb/4lPBtiXA8QmaIxV4VwN0sJuB3eji8lI5ukw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\VirtualHosp.csproj",
+  "projectFilePath": "C:\\Users\\Gonza\\Source\\Repos\\VirtualHosp2\\VirtualHosp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gonza\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Gonza\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.15\\microsoft.aspnetcore.jsonpatch.3.1.15.nupkg.sha512",
