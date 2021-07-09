@@ -10,7 +10,7 @@ namespace VirtualHosp.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required(ErrorMessage = "Número de matrícula es requerida")]
-        [Display(Name = "Número de matrícula")]
+        [Display(Name = "Matrícula")]
         public int NumeroMatricula { get; set; }
         public Especialidad Especialidad { get; set; }
     }

@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using VirtualHosp.Context;
 using VirtualHosp.Models;
+using VirtualHosp.Models.Enums;
 
 namespace VirtualHosp.Controllers
 {
     public class PacientesController : Controller
     {
         private readonly HospitalDbContext _context;
+        private static readonly SelectList tipoDocumento = new SelectList(Enum.GetValues(typeof(TipoDocumento)), TipoDocumento.DNI);
+        private static readonly SelectList estadoCivil = new SelectList(Enum.GetValues(typeof(EstadoCivil)), EstadoCivil.SOLTERO);
+        private static readonly SelectList planMedico = new SelectList(Enum.GetValues(typeof(PlanMedico)), PlanMedico.BASICO);
 
         public PacientesController(HospitalDbContext context)
         {
@@ -46,6 +49,9 @@ namespace VirtualHosp.Controllers
         // GET: Pacientes/Create
         public IActionResult Create()
         {
+            ViewBag.TipoDocumento = tipoDocumento;
+            ViewBag.EstadoCivil = estadoCivil;
+            ViewBag.PlanMedico = planMedico;
             return View();
         }
 
@@ -62,6 +68,9 @@ namespace VirtualHosp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.TipoDocumento = tipoDocumento;
+            ViewBag.EstadoCivil = estadoCivil;
+            ViewBag.PlanMedico = planMedico;
             return View(paciente);
         }
 
@@ -78,6 +87,9 @@ namespace VirtualHosp.Controllers
             {
                 return NotFound();
             }
+            ViewBag.TipoDocumento = tipoDocumento;
+            ViewBag.EstadoCivil = estadoCivil;
+            ViewBag.PlanMedico = planMedico;
             return View(paciente);
         }
 
@@ -113,6 +125,9 @@ namespace VirtualHosp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.TipoDocumento = tipoDocumento;
+            ViewBag.EstadoCivil = estadoCivil;
+            ViewBag.PlanMedico = planMedico;
             return View(paciente);
         }
 

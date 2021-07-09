@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VirtualHosp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VirtualHosp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -36,12 +37,17 @@
                     </ul>
                 </div>
             </div>
-        </nav>*@
-        <div class="pos-f-t">
+        </nav>
+        @*<div class="pos-f-t">
             <div class="collapse" id="navbarToggleExternalContent">
                 <div class="bg-dark p-4">
                     <h4 class="text-white">Collapsed content</h4>
                     <span class="text-muted">Toggleable via the navbar brand.</span>
+                    <a class="" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="" asp-area="" asp-controller="Medicos" asp-action="Index">Medicos</a>
+                    <a class="" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
+                    <a class="" asp-area="" asp-controller="Consultas" asp-action="Index">Consultas</a>
+                    <a class="" asp-area="" asp-controller="Estudios" asp-action="Index">Estudios</a>
                 </div>
             </div>
             <nav class="navbar navbar-dark bg-dark">
@@ -49,7 +55,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </nav>
-        </div>
+        </div>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">

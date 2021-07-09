@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using VirtualHosp.Enums;
+using VirtualHosp.Models.Enums;
 
 namespace VirtualHosp.Models
 {
@@ -19,7 +19,7 @@ namespace VirtualHosp.Models
         public TipoDocumento TipoDocumento { get; set; }
         [Required(ErrorMessage = "Numero es requerido")]
         [Display(Name = "Número de documento")]
-        [Range(0.0, Double.MaxValue, ErrorMessage = "El campo {0} debe ser mayor a {1}.")]
+        [Range(0.0, double.MaxValue, ErrorMessage = "El campo {0} debe ser mayor a {1}.")]
         public int NumeroDocumento { get; set; }
         [Display(Name = "Estado civil")]
         public EstadoCivil? EstadoCivil { get; set; }
