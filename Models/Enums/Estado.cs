@@ -2,6 +2,6 @@
 {
     public enum Estado
     {
-        CREADO, CANCELADO, FINALIZADO, AUSENTE, ESPERA
+        CREADO, ESPERA, AUSENTE, CANCELADO, FINALIZADO
     }
 }

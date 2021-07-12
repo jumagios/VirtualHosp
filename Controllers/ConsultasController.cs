@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using VirtualHosp.Context;
 using VirtualHosp.Models;
+using VirtualHosp.Models.Enums;
 
 namespace VirtualHosp.Controllers
 {
     public class ConsultasController : Controller
     {
         private readonly HospitalDbContext _context;
+        private static readonly SelectList estado = new SelectList(Enum.GetValues(typeof(Estado)), Estado.CREADO);
 
         public ConsultasController(HospitalDbContext context)
         {
@@ -22,7 +23,19 @@ namespace VirtualHosp.Controllers
         // GET: Consultas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Consultas.ToListAsync());
+            var consultas = await _context.Consultas.ToListAsync();
+            foreach (var consulta in consultas)
+            {
+                if (consulta.MedicoId != 0)
+                {
+                    consulta.Medico = await _context.Medicos.FindAsync(consulta.MedicoId);
+                }
+                if (consulta.PacienteId != 0)
+                {
+                    consulta.Paciente = await _context.Pacientes.FindAsync(consulta.PacienteId);
+                }
+            }
+            return View(consultas);
         }
 
         // GET: Consultas/Details/5
@@ -46,6 +59,7 @@ namespace VirtualHosp.Controllers
         // GET: Consultas/Create
         public IActionResult Create()
         {
+            ViewBag.Estado = estado;
             return View();
         }
 
@@ -54,7 +68,7 @@ namespace VirtualHosp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fecha,Estado,Coseguro")] Consulta consulta)
+        public async Task<IActionResult> Create([Bind("Id,Fecha,Estado,Coseguro,ConsultaDescripcion")] Consulta consulta)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +76,7 @@ namespace VirtualHosp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Estado = estado;
             return View(consulta);
         }
 
@@ -78,6 +93,7 @@ namespace VirtualHosp.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Estado = estado;
             return View(consulta);
         }
 
@@ -86,7 +102,7 @@ namespace VirtualHosp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Estado,Coseguro")] Consulta consulta)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Estado,Coseguro,ConsultaDescripcion")] Consulta consulta)
         {
             if (id != consulta.Id)
             {
@@ -113,6 +129,7 @@ namespace VirtualHosp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Estado = estado;
             return View(consulta);
         }
 
@@ -148,6 +165,60 @@ namespace VirtualHosp.Controllers
         private bool ConsultaExists(int id)
         {
             return _context.Consultas.Any(e => e.Id == id);
+        }
+
+
+        public IActionResult AddMedico(int id)
+        {
+            ConsultaRelations consultaMedico = new ConsultaRelations
+            {
+                ConsultaId = id
+            };
+            ViewBag.Medicos = _context.Medicos.ToList();
+            return View(consultaMedico);
+        }        
+
+        public async Task<IActionResult> AddMedicoSave(ConsultaRelations consultaMedico)
+        {
+            var consulta = await _context.Consultas.FirstOrDefaultAsync(m => m.Id == consultaMedico.ConsultaId);
+            consulta.Medico = await _context.Medicos.FirstOrDefaultAsync(m => m.Id == consultaMedico.MedicoId);
+
+            _context.Update(consulta);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult AddPaciente(int id)
+        {
+            ConsultaRelations consultaMedico = new ConsultaRelations
+            {
+                ConsultaId = id
+            };
+            ViewBag.Pacientes = _context.Pacientes.ToList();
+            return View(consultaMedico);
+        }
+
+        public async Task<IActionResult> AddPacienteSave(ConsultaRelations consultaPaciente)
+        {
+            var consulta = await _context.Consultas.FirstOrDefaultAsync(m => m.Id == consultaPaciente.ConsultaId);
+            consulta.Paciente = await _context.Pacientes.FirstOrDefaultAsync(m => m.Id == consultaPaciente.PacienteId);
+
+            _context.Update(consulta);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Gestionar(int id)
+        {
+            var consulta = await _context.Consultas.FindAsync(id);
+            if (consulta == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Estado = estado;
+            return View(consulta);
         }
     }
 }

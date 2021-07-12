@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualHosp.Context;
 
 namespace VirtualHosp.Migrations
 {
     [DbContext(typeof(HospitalDbContext))]
-    partial class HospitalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210712010057_new4")]
+    partial class new4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace VirtualHosp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ConsultaDescripcion")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Coseguro")
                         .HasColumnType("float");
@@ -43,9 +42,6 @@ namespace VirtualHosp.Migrations
 
                     b.Property<int?>("PacienteId")
                         .HasColumnType("int");
-
-                    b.Property<string>("RespuestaMedico")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

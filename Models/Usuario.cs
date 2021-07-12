@@ -36,5 +36,6 @@ namespace VirtualHosp.Models
         [Required(ErrorMessage = "Contraseña es requerida")]
         [StringLength(30, ErrorMessage = "Debe ser entre 5 y 30 caracteres", MinimumLength = 5)]
         public string Password { get; set; }
+        public string NombreCompleto => Apellido + ", " + Nombre;
     }
 }

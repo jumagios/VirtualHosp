@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualHosp.Context;
 
 namespace VirtualHosp.Migrations
 {
     [DbContext(typeof(HospitalDbContext))]
-    partial class HospitalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210712002409_new3")]
+    partial class new3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,6 @@ namespace VirtualHosp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ConsultaDescripcion")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Coseguro")
                         .HasColumnType("float");
 
@@ -38,14 +37,11 @@ namespace VirtualHosp.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MedicoId")
+                    b.Property<int>("MedicoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PacienteId")
+                    b.Property<int>("PacienteId")
                         .HasColumnType("int");
-
-                    b.Property<string>("RespuestaMedico")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -204,11 +200,15 @@ namespace VirtualHosp.Migrations
                 {
                     b.HasOne("VirtualHosp.Models.Medico", "Medico")
                         .WithMany()
-                        .HasForeignKey("MedicoId");
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VirtualHosp.Models.Paciente", "Paciente")
                         .WithMany("Consultas")
-                        .HasForeignKey("PacienteId");
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("VirtualHosp.Models.Estudio", b =>

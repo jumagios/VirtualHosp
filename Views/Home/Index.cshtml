@@ -1,8 +1,65 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<VirtualHosp.Models.Consulta>
+@{
+    ViewData["Title"] = "Gestion consultas";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenido! <br /> Aqui podra gestionar las consultas generadas:</h1>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Coseguro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medico)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Paciente)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Coseguro)
+                    </td>
+                    <td>
+                        @if (item.Medico != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Medico.NombreCompleto)
+
+                        }
+                    </td>
+                    <td>
+                        @if (item.Paciente != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Paciente.NombreCompleto)
+
+                        }
+                    </td>
+                    <td>
+                        <a asp-route-id="@item.Id" asp-action="Gestionar" asp-controller="Consultas" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>Proyecto desarrollado por Gonzalo, Martin y Juan.</p>
 </div>
