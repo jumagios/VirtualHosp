@@ -4,9 +4,9 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenido! <br /> Aqui podra gestionar las consultas generadas:</h1>
+    <h2>Aquí podrá gestionar las consultas generadas:</h2>
     <br />
-    <table class="table">
+    <table class="table table-striped table-dark">
         <thead>
             <tr>
                 <th>
@@ -55,11 +55,17 @@
                         }
                     </td>
                     <td>
-                        <a asp-route-id="@item.Id" asp-action="Gestionar" asp-controller="Consultas" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                        @if (item.Estado == VirtualHosp.Models.Enums.Estado.FINALIZADO || item.Estado == VirtualHosp.Models.Enums.Estado.CANCELADO || item.Estado == VirtualHosp.Models.Enums.Estado.AUSENTE)
+                        {
+                            <a asp-route-id="@item.Id" asp-action="Details" asp-controller="Consultas" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a>
+                        }
+                        else
+                        {
+                            <a asp-route-id="@item.Id" asp-action="Gestionar" asp-controller="Consultas" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    <p>Proyecto desarrollado por Gonzalo, Martin y Juan.</p>
 </div>

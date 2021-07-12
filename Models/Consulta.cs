@@ -20,7 +20,11 @@ namespace VirtualHosp.Models
         public double Coseguro { get; set; }
         public int? MedicoId { get; set; }
         public int? PacienteId { get; set; }
+        [Required(ErrorMessage = "La consulta es requerida")]
+        [Display(Name = "Consulta del paciente")]
         public string ConsultaDescripcion { get; set; }
+        [Display(Name = "Respuesta del médico")]
         public string RespuestaMedico { get; set; }
+        public Especialidad Especialidad { get; set; }
     }
 }

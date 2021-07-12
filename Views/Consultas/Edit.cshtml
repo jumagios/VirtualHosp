@@ -13,6 +13,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="MedicoId" />
+            <input type="hidden" asp-for="PacienteId" />
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
                 <input asp-for="Fecha" class="form-control" />
@@ -24,14 +26,24 @@
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Especialidad" class="control-label"></label>
+                <select asp-for="Especialidad" class="form-control" asp-items="ViewBag.Especialidades" onchange="calcularCoseguro(); quitarMedico();"></select>
+                <span asp-validation-for="Especialidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Coseguro" class="control-label"></label>
-                <input asp-for="Coseguro" class="form-control" />
+                <input asp-for="Coseguro" class="form-control" readonly />
                 <span asp-validation-for="Coseguro" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ConsultaDescripcion" class="control-label"></label>
                 <input asp-for="ConsultaDescripcion" class="form-control" />
                 <span asp-validation-for="ConsultaDescripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RespuestaMedico" class="control-label"></label>
+                <input asp-for="RespuestaMedico" class="form-control" />
+                <span asp-validation-for="RespuestaMedico" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -43,4 +55,23 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function calcularCoseguro() {
+            var especialidad = document.getElementById("Especialidad").value;
+
+            if (especialidad == 'ORTODONCIA') {
+                document.getElementById("Coseguro").value = 500;
+            } else if (especialidad == 'OFTALMOLOGIA') {
+                document.getElementById("Coseguro").value = 800;
+            } else if (especialidad == 'TRAUMATOLOGIA') {
+                document.getElementById("Coseguro").value = 650;
+            }
+        }
+        function quitarMedico() {
+            document.getElementById("MedicoId").value = null;
+        }
+        $(document).ready(function () {
+            calcularCoseguro();
+        });
+    </script>
 }

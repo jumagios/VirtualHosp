@@ -13,7 +13,8 @@ namespace VirtualHosp.Controllers
     public class ConsultasController : Controller
     {
         private readonly HospitalDbContext _context;
-        private static readonly SelectList estado = new SelectList(Enum.GetValues(typeof(Estado)), Estado.CREADO);
+        private static readonly SelectList estados = new SelectList(Enum.GetValues(typeof(Estado)), Estado.CREADO);
+        private static readonly SelectList especialidades = new SelectList(Enum.GetValues(typeof(Especialidad)), Especialidad.OFTALMOLOGIA);
 
         public ConsultasController(HospitalDbContext context)
         {
@@ -59,7 +60,8 @@ namespace VirtualHosp.Controllers
         // GET: Consultas/Create
         public IActionResult Create()
         {
-            ViewBag.Estado = estado;
+            ViewBag.Estado = estados;
+            ViewBag.Especialidades = especialidades;
             return View();
         }
 
@@ -68,7 +70,7 @@ namespace VirtualHosp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fecha,Estado,Coseguro,ConsultaDescripcion")] Consulta consulta)
+        public async Task<IActionResult> Create([Bind("Id,Fecha,Estado,Coseguro,ConsultaDescripcion,Especialidad")] Consulta consulta)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +78,8 @@ namespace VirtualHosp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Estado = estado;
+            ViewBag.Estado = estados;
+            ViewBag.Especialidades = especialidades;
             return View(consulta);
         }
 
@@ -93,7 +96,8 @@ namespace VirtualHosp.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Estado = estado;
+            ViewBag.Estado = estados;
+            ViewBag.Especialidades = especialidades;
             return View(consulta);
         }
 
@@ -102,7 +106,7 @@ namespace VirtualHosp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Estado,Coseguro,ConsultaDescripcion")] Consulta consulta)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Estado,Coseguro,ConsultaDescripcion,RespuestaMedico,Especialidad,MedicoId,PacienteId")] Consulta consulta)
         {
             if (id != consulta.Id)
             {
@@ -129,7 +133,8 @@ namespace VirtualHosp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Estado = estado;
+            ViewBag.Estado = estados;
+            ViewBag.Especialidades = especialidades;
             return View(consulta);
         }
 
@@ -174,7 +179,8 @@ namespace VirtualHosp.Controllers
             {
                 ConsultaId = id
             };
-            ViewBag.Medicos = _context.Medicos.ToList();
+            var consulta = _context.Consultas.FirstOrDefault(m => m.Id == id);
+            ViewBag.Medicos = _context.Medicos.Where(x => x.Especialidad == consulta.Especialidad);
             return View(consultaMedico);
         }        
 
@@ -217,8 +223,40 @@ namespace VirtualHosp.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Estado = estado;
+            ViewBag.Estado = estados;
+            ViewBag.Especialidades = especialidades;
             return View(consulta);
+        }
+        public async Task<IActionResult> GestionarSave(int id, [Bind("Id,Fecha,Estado,Coseguro,ConsultaDescripcion,Especialidad,MedicoId,PacienteId,RespuestaMedico")] Consulta consulta)
+        {
+            if (id != consulta.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(consulta);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ConsultaExists(consulta.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.Estado = estados;
+            ViewBag.Especialidades = especialidades;
+            return View("Gestionar", consulta);
         }
     }
 }

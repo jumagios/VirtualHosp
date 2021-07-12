@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Password" />
             <div class="form-group">
                 <label asp-for="NumeroMatricula" class="control-label"></label>
                 <input asp-for="NumeroMatricula" class="form-control" />
@@ -78,11 +79,11 @@
                 <input asp-for="CodigoPostal" class="form-control" />
                 <span asp-validation-for="CodigoPostal" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-info">Volver</a>
