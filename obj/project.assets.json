@@ -8698,24 +8698,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\juang\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Tec\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\juang\\Documents\\VHosp\\VirtualHosp\\VirtualHosp.csproj",
+      "projectUniqueName": "C:\\Users\\Tec\\Desktop\\virtualHospitalDomingo\\VirtualHosp.csproj",
       "projectName": "VirtualHosp",
-      "projectPath": "C:\\Users\\juang\\Documents\\VHosp\\VirtualHosp\\VirtualHosp.csproj",
-      "packagesPath": "C:\\Users\\juang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\juang\\Documents\\VHosp\\VirtualHosp\\obj\\",
+      "projectPath": "C:\\Users\\Tec\\Desktop\\virtualHospitalDomingo\\VirtualHosp.csproj",
+      "packagesPath": "C:\\Users\\Tec\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tec\\Desktop\\virtualHospitalDomingo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\juang\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Tec\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8782,7 +8781,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
