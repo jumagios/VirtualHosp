@@ -10,15 +10,15 @@ using VirtualHosp.Context;
 namespace VirtualHosp.Migrations
 {
     [DbContext(typeof(HospitalDbContext))]
-    [Migration("20210610004847_VirtualHosp.Context.HospitalDbContext")]
+    [Migration("20211103232703_VirtualHosp.Context.HospitalDbContext")]
     partial class VirtualHospContextHospitalDbContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("ProductVersion", "3.1.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("VirtualHosp.Clases.Usuario", b =>
@@ -35,7 +35,7 @@ namespace VirtualHosp.Migrations
                     b.Property<string>("Ciudad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CodigoPostal")
+                    b.Property<int?>("CodigoPostal")
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
@@ -45,7 +45,7 @@ namespace VirtualHosp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EstadoCivil")
+                    b.Property<int?>("EstadoCivil")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FechaNacimiento")
@@ -63,8 +63,8 @@ namespace VirtualHosp.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<int>("TipoDocumento")
                         .HasColumnType("int");

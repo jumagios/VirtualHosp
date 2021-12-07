@@ -8698,19 +8698,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gonza\\.nuget\\packages\\": {}
+    "C:\\Users\\Tec\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\VirtualHosp.csproj",
+      "projectUniqueName": "C:\\Users\\Tec\\Desktop\\virtualHospitalDomingo\\VirtualHosp.csproj",
       "projectName": "VirtualHosp",
-      "projectPath": "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\VirtualHosp.csproj",
-      "packagesPath": "C:\\Users\\Gonza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gonza\\source\\repos\\VirtualHosp2\\obj\\",
+      "projectPath": "C:\\Users\\Tec\\Desktop\\virtualHospitalDomingo\\VirtualHosp.csproj",
+      "packagesPath": "C:\\Users\\Tec\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tec\\Desktop\\virtualHospitalDomingo\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Gonza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tec\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
