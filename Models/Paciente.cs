@@ -1,32 +1,22 @@
-﻿using System;
-using VirtualHosp.Clases;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using VirtualHosp.Models.Enums;
 
 namespace VirtualHosp.Models
 {
     public class Paciente : Usuario
     {
-        private string HistorialMedico;
-        private string Medicamentos;
-        private string AntecedentesMedicos;        
-
-        public Paciente(string historial, string meds, string antecedentes)
-        {
-
-            HistorialMedico = historial;
-            Medicamentos = meds;
-            AntecedentesMedicos = antecedentes;
-
-        }
-
-
-
-        public void CrearTurnoVirtual()
-        {
-            Console.WriteLine("Creaste tu consulta");
-        }
-
-
-
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        public PlanMedico Plan { get; set; }
+        public List<Consulta> Consultas { get; set; }
+        [Display(Name = "Historial Médico")]
+        public string HistorialMedico { get; set; }
+        [Display(Name = "Antecedentes Médicos")]
+        public string AntecedentesMedicos { get; set; }
+        public string Medicamentos { get; set; }
+        public List<Estudio> Estudios { get; set; }
     }
 }

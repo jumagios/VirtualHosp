@@ -1,26 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
+using VirtualHosp.Context;
 using VirtualHosp.Models;
 
 namespace VirtualHosp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly HospitalDbContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(HospitalDbContext context, ILogger<HomeController> logger)
         {
+            _context = context;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var consultas = await _context.Consultas.ToListAsync();
+            foreach (var consulta in consultas)
+            {
+                if (consulta.MedicoId != 0)
+                {
+                    consulta.Medico = await _context.Medicos.FindAsync(consulta.MedicoId);
+                }
+                if (consulta.PacienteId != 0)
+                {
+                    consulta.Paciente = await _context.Pacientes.FindAsync(consulta.PacienteId);
+                }
+            }
+            return View(consultas);
         }
 
         public IActionResult Privacy()

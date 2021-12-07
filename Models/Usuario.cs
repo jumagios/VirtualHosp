@@ -1,15 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using VirtualHosp.Enums;
+using VirtualHosp.Models.Enums;
 
-namespace VirtualHosp.Clases
+namespace VirtualHosp.Models
 {
     public class Usuario
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         [Required(ErrorMessage = "Nombre es requerido")]
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Apellido es requerido")]
@@ -23,12 +19,11 @@ namespace VirtualHosp.Clases
         public TipoDocumento TipoDocumento { get; set; }
         [Required(ErrorMessage = "Numero es requerido")]
         [Display(Name = "Número de documento")]
-        [Range(0.0, Double.MaxValue, ErrorMessage = "El campo {0} debe ser mayor a {1}.")]
+        [Range(0.0, double.MaxValue, ErrorMessage = "El campo {0} debe ser mayor a {1}.")]
         public int NumeroDocumento { get; set; }
         [Display(Name = "Estado civil")]
         public EstadoCivil? EstadoCivil { get; set; }
         [Required(ErrorMessage = "Email es requerido")]
-        [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string Email { get; set; }
         public string Direccion { get; set; }
@@ -41,5 +36,6 @@ namespace VirtualHosp.Clases
         [Required(ErrorMessage = "Contraseña es requerida")]
         [StringLength(30, ErrorMessage = "Debe ser entre 5 y 30 caracteres", MinimumLength = 5)]
         public string Password { get; set; }
+        public string NombreCompleto => Apellido + ", " + Nombre;
     }
 }
